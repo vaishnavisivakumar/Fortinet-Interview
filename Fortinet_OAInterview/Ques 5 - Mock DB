@@ -1,0 +1,27 @@
+Yes, DB can be mocked when testing the Service layer with the JUnit test case. 
+
+There are two ways of mocking a DB
+
+1. mocking the java.sql package
+2. mocking service/DAO class
+
+Mocking java.sql class
+
+@InjectMocks private DBConnection dbConnection; //annotated DB connection class
+  @Mock private Connection mockConnection;  
+  @Mock private Statement mockStatement;
+
+The Connection and Statement classes of java.sql are annotated with @Mock. In the setUp method we will initialize the mock object with initMocks() method. 
+
+Test case
+
+Mockito.when(mockConnection.createStatement().executeUpdate(Mockito.any())).thenReturn(1); //when and then method used to test the mocked DB objects.
+
+
+Mocking Service/DAO class
+
+@Mock private MyDao myDao; //DOA object is mocked;
+
+Mockito.when(myDao.method().thenReturn(returnMethod());
+
+
